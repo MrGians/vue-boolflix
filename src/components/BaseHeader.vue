@@ -2,7 +2,7 @@
   <header>
     <div id="navbar">
       <span>Boolflix</span>
-      <input type="text" v-model="movieQuery" @keyup.enter="setMovieQuery" />
+      <input type="text" v-model="query" @keyup.enter="setQuery" />
     </div>
   </header>
 </template>
@@ -11,13 +11,13 @@
 export default {
   name: "BaseHeader",
   methods: {
-    setMovieQuery() {
-      this.$emit("query-selection", this.movieQuery);
+    setQuery() {
+      this.$emit("query-selection", this.query);
     },
   },
   data() {
     return {
-      movieQuery: "",
+      query: "",
     };
   },
 };

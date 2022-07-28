@@ -1,7 +1,7 @@
 <template>
   <div>
-    <BaseHeader @query-selection="displayMovies" />
-    <BaseMain :movie-query="movieQuery" :movies="moviesList" />
+    <BaseHeader @query-selection="displayQueryResults" />
+    <BaseMain :query="query" :movies="moviesList" :series="tvSeriesList" />
   </div>
 </template>
 
@@ -17,24 +17,30 @@ export default {
       baseUri: "https://api.themoviedb.org/3",
       apiKey: "api_key=b7dbfbbc8992a9c6e19724a411d702e7",
       langIT: "language=it-IT",
-      movieQuery: "",
+      query: "",
       moviesList: [],
+      tvSeriesList: [],
     };
   },
   methods: {
     fetchedMovies() {
       axios
-        .get(`${this.baseUri}/search/movie?${this.apiKey}&${this.langIT}&query=${this.movieQuery}`)
+        .get(`${this.baseUri}/search/movie?${this.apiKey}&${this.langIT}&query=${this.query}`)
         .then((res) => {
           this.moviesList = res.data.results;
-        })
-        .catch((err) => {
-          console.log(err.message);
         });
     },
-    displayMovies(value) {
-      this.movieQuery = value;
+    fetchedTvSeries() {
+      axios
+        .get(`${this.baseUri}/search/tv?${this.apiKey}&${this.langIT}&query=${this.query}`)
+        .then((res) => {
+          this.tvSeriesList = res.data.results;
+        });
+    },
+    displayQueryResults(value) {
+      this.query = value;
       this.fetchedMovies();
+      this.fetchedTvSeries();
     },
   },
 };
