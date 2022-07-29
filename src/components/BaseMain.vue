@@ -23,6 +23,7 @@
     </ol>
     <!-- TV SERIES -->
     <ol>
+      <FaIcon :icon="['fa-solid', 'fa-star']" />
       <li><h3>TV SERIES HERE</h3></li>
       <li v-for="serie in series" :key="serie.id">
         Cover:
