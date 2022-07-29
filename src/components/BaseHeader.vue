@@ -1,24 +1,21 @@
 <template>
   <header>
     <div id="navbar">
-      <span>Boolflix</span>
-      <input type="text" v-model="query" @keyup.enter="setQuery" />
+      <h1>Boolflix</h1>
+      <SearchInput @search="searchQuery" />
     </div>
   </header>
 </template>
 
 <script>
+import SearchInput from "./SearchInput.vue";
 export default {
   name: "BaseHeader",
+  components: { SearchInput },
   methods: {
-    setQuery() {
-      this.$emit("query-selection", this.query);
+    searchQuery(query) {
+      this.$emit("search-query", query);
     },
-  },
-  data() {
-    return {
-      query: "",
-    };
   },
 };
 </script>
