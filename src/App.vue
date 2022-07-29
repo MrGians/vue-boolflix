@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- TODO CHANGE ALL -->
     <BaseHeader @search-query="startSearch" />
     <BaseMain :movies="moviesList" :series="tvSeriesList" />
   </div>
