@@ -20,7 +20,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "./assets/styles/style.scss";
+
 header {
   /* Test Style */
   background-color: gray;

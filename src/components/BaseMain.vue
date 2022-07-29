@@ -75,7 +75,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "./assets/styles/style.scss";
+
 main {
   display: flex;
 }
