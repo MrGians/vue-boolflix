@@ -4,6 +4,8 @@
     <ol>
       <li><h3>MOVIES HERE</h3></li>
       <li v-for="movie in movies" :key="movie.id">
+        Cover:
+        <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="poster" /> <br />
         Titolo: {{ movie.title }}, <br />
         Titolo Originale: {{ movie.original_title }}, <br />
         <div v-if="movie.original_language === 'it' || movie.original_language === 'en'">
@@ -23,7 +25,10 @@
     <ol>
       <li><h3>TV SERIES HERE</h3></li>
       <li v-for="serie in series" :key="serie.id">
-        Titolo: {{ serie.name }}, <br />
+        Cover:
+        <img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" alt="poster" /> <br />
+        Titolo:
+        {{ serie.name }}, <br />
         Titolo Originale: {{ serie.original_name }}, <br />
         <div v-if="serie.original_language === 'it' || serie.original_language === 'en'">
           Lingua:
