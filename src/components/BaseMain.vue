@@ -40,6 +40,14 @@
         </div>
         <div v-else>Lingua: {{ serie.original_language }}, <br /></div>
         Voto: {{ voteRoundedUp(serie.vote_average) }} . <br />
+        <i v-for="n in voteRoundedUp(serie.vote_average)" :key="n" class="fa-solid fa-star"></i>
+        <div v-if="voteRoundedUp(serie.vote_average) !== 5">
+          <i
+            v-for="n in 5 - voteRoundedUp(serie.vote_average)"
+            :key="n"
+            class="fa-regular fa-star"
+          ></i>
+        </div>
         <hr />
       </li>
     </ol>
