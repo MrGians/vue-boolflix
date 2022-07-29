@@ -17,7 +17,7 @@
           />
         </div>
         <div v-else>Lingua: {{ movie.original_language }}, <br /></div>
-        Voto: {{ movie.vote_average }} . <br />
+        Voto: {{ voteRoundedUp(movie.vote_average) }} . <br />
         <hr />
       </li>
     </ol>
@@ -39,7 +39,7 @@
           />
         </div>
         <div v-else>Lingua: {{ serie.original_language }}, <br /></div>
-        Voto: {{ serie.vote_average }} . <br />
+        Voto: {{ voteRoundedUp(serie.vote_average) }} . <br />
         <hr />
       </li>
     </ol>
@@ -53,6 +53,12 @@ export default {
     movies: Array,
     series: Array,
     query: String,
+  },
+  methods: {
+    voteRoundedUp(vote) {
+      if (vote < 1) vote = 1;
+      return Math.ceil(vote / 2);
+    },
   },
 };
 </script>
