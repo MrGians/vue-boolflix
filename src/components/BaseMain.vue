@@ -23,7 +23,6 @@
     </ol>
     <!-- TV SERIES -->
     <ol>
-      <FaIcon :icon="['fa-solid', 'fa-star']" />
       <li><h3>TV SERIES HERE</h3></li>
       <li v-for="serie in series" :key="serie.id">
         Cover:
@@ -41,13 +40,17 @@
         </div>
         <div v-else>Lingua: {{ serie.original_language }}, <br /></div>
         Voto: {{ voteRoundedUp(serie.vote_average) }} . <br />
-        <i v-for="n in voteRoundedUp(serie.vote_average)" :key="n" class="fa-solid fa-star"></i>
+        <FaIcon
+          v-for="n in voteRoundedUp(serie.vote_average)"
+          :key="n"
+          :icon="['fa-solid', 'fa-star']"
+        />
         <div v-if="voteRoundedUp(serie.vote_average) !== 5">
-          <i
+          <FaIcon
             v-for="n in 5 - voteRoundedUp(serie.vote_average)"
             :key="n"
-            class="fa-regular fa-star"
-          ></i>
+            :icon="['fa-regular', 'fa-star']"
+          />
         </div>
         <hr />
       </li>

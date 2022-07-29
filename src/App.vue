@@ -1,6 +1,7 @@
 <template>
   <div>
-    <BaseHeader @query-selection="displayQueryResults" />
+    <!-- TODO CHANGE ALL -->
+    <BaseHeader @search-query="displayQueryResults" />
     <BaseMain :query="query" :movies="moviesList" :series="tvSeriesList" />
   </div>
 </template>
