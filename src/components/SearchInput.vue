@@ -1,10 +1,18 @@
 <template>
-  <input type="text" v-model="query" @keyup.enter="setQuery" />
+  <div>
+    <input v-model="query" @keyup.enter="setQuery" type="text" :placeholder="placeholder" />
+  </div>
 </template>
 
 <script>
 export default {
   name: "SearchInput",
+  props: {
+    placeholder: {
+      type: String,
+      default: "Cerca...",
+    },
+  },
   methods: {
     setQuery() {
       this.$emit("search", this.query);
