@@ -64,7 +64,6 @@ export default {
   props: {
     movies: Array,
     series: Array,
-    query: String,
   },
   methods: {
     voteRoundedUp(vote) {

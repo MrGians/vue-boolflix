@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- TODO CHANGE ALL -->
-    <BaseHeader @search-query="displayQueryResults" />
-    <BaseMain :query="query" :movies="moviesList" :series="tvSeriesList" />
+    <BaseHeader @search-query="startSearch" />
+    <BaseMain :movies="moviesList" :series="tvSeriesList" />
   </div>
 </template>
 
@@ -15,33 +15,33 @@ export default {
   components: { BaseHeader, BaseMain },
   data() {
     return {
-      baseUri: "https://api.themoviedb.org/3",
-      apiKey: "api_key=b7dbfbbc8992a9c6e19724a411d702e7",
-      langIT: "language=it-IT",
-      query: "",
+      api: {
+        baseUri: "https://api.themoviedb.org/3",
+        api_key: "b7dbfbbc8992a9c6e19724a411d702e7",
+        language: "language=it-IT",
+      },
       moviesList: [],
       tvSeriesList: [],
     };
   },
   methods: {
-    fetchedMovies() {
-      axios
-        .get(`${this.baseUri}/search/movie?${this.apiKey}&${this.langIT}&query=${this.query}`)
-        .then((res) => {
-          this.moviesList = res.data.results;
-        });
+    startSearch(query) {
+      const { api_key, language } = this.api;
+      const config = {
+        params: {
+          api_key,
+          language,
+          query,
+        },
+      };
+
+      this.fetchData("/search/movie", "moviesList", config);
+      this.fetchData("/search/tv", "tvSeriesList", config);
     },
-    fetchedTvSeries() {
-      axios
-        .get(`${this.baseUri}/search/tv?${this.apiKey}&${this.langIT}&query=${this.query}`)
-        .then((res) => {
-          this.tvSeriesList = res.data.results;
-        });
-    },
-    displayQueryResults(value) {
-      this.query = value;
-      this.fetchedMovies();
-      this.fetchedTvSeries();
+    fetchData(endpoint, list, config) {
+      axios.get(`${this.api.baseUri}${endpoint}`, config).then((res) => {
+        this[list] = res.data.results;
+      });
     },
   },
 };
