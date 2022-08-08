@@ -1,10 +1,28 @@
 <template>
   <main>
-    <div v-for="movie in movies" :key="movie.id">
-      <CardCover :item="movie" />
-    </div>
-    <div v-for="serie in series" :key="serie.id">
-      <CardCover :item="serie" />
+    <div id="pagination">
+      <!-- Movie Section -->
+      <section id="movies">
+        <!-- Section Title -->
+        <h2>Movies List</h2>
+        <!-- Movie Card List -->
+        <div class="row">
+          <div v-for="movie in movies" :key="movie.id" class="col-4 p-1">
+            <CardCover :item="movie" />
+          </div>
+        </div>
+      </section>
+      <!-- TV Series Section -->
+      <section id="tv-series">
+        <!-- Section Title -->
+        <h2>TV Series List</h2>
+        <!-- TV Series Card List -->
+        <div class="row">
+          <div v-for="serie in series" :key="serie.id" class="col-4 p-1">
+            <CardCover :item="serie" />
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 </template>
@@ -23,4 +41,24 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../assets/styles/style.scss";
+
+#pagination {
+  display: flex;
+  text-align: center;
+  color: $text_color;
+
+  #movies,
+  #tv-series {
+    flex-basis: 50%;
+    padding: 0.5rem;
+
+    .row {
+      margin: 0 auto;
+
+      .col {
+        max-height: 200px;
+      }
+    }
+  }
+}
 </style>

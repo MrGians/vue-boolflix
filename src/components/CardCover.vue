@@ -68,17 +68,21 @@ export default {
 @import "./../assets/styles/style.scss";
 
 .card-cover {
-  width: 200px;
+  width: 100%;
+  height: 100%;
   color: $text-color;
   position: relative;
 
   .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: opacity 0.2s;
   }
 
   &:hover {
     .cover {
-      opacity: 0;
+      opacity: 0.1;
     }
     .card-info {
       opacity: 1;
@@ -91,8 +95,9 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
+    overflow: auto;
     opacity: 0;
 
     .original-title {
@@ -103,6 +108,13 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-top: 0.5rem;
+
+      & > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
