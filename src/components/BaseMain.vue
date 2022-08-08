@@ -52,12 +52,11 @@ export default {
     flex-basis: 50%;
     padding: 0.5rem;
 
+    h2 {
+      margin: 1rem auto;
+    }
     .row {
       margin: 0 auto;
-
-      .col {
-        max-height: 200px;
-      }
     }
   }
 }

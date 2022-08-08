@@ -5,7 +5,7 @@
         <h1>Boolflix</h1>
         <div class="search-box">
           <SearchInput @search="searchQuery" placeholder="Cerca Film o Serie" />
-          <button class="custom-btn" type="button">Button</button>
+          <button class="custom-btn" type="button">Cerca</button>
         </div>
       </div>
     </div>
