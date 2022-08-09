@@ -26,8 +26,18 @@
           <FaIcon v-for="n in 5 - voteRoundedUp" :key="n" icon="fa-regular fa-star" />
         </div>
       </div>
-      <!-- Plot -->
-      <!-- <div class="plot"></div> -->
+      <!-- Genre -->
+      <div class="genre">
+        <div>Genere:</div>
+        <span></span>
+      </div>
+      <!-- Cast -->
+      <div class="cast">
+        <div>Cast:</div>
+        <span></span>
+      </div>
+      <!-- Overview -->
+      <div class="overview"></div>
     </div>
   </div>
 </template>
