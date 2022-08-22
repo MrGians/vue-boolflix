@@ -34,7 +34,7 @@
       <!-- Cast -->
       <div class="cast">
         <div>Cast:</div>
-        <span></span>
+        <span> </span>
       </div>
       <!-- Overview -->
       <div class="overview"></div>

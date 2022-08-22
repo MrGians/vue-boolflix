@@ -6,22 +6,24 @@
         <!-- Section Title -->
         <h2>Movies List</h2>
         <!-- Movie Card List -->
-        <div class="row">
+        <div v-if="movies.length" class="row">
           <div v-for="movie in movies" :key="movie.id" class="col-4 p-1">
             <CardCover :item="movie" />
           </div>
         </div>
+        <div v-else>Non sono stati trovati risultati</div>
       </section>
       <!-- TV Series Section -->
       <section id="tv-series">
         <!-- Section Title -->
         <h2>TV Series List</h2>
         <!-- TV Series Card List -->
-        <div class="row">
+        <div v-if="series.length" class="row">
           <div v-for="serie in series" :key="serie.id" class="col-4 p-1">
             <CardCover :item="serie" />
           </div>
         </div>
+        <div v-else>Non sono stati trovati risultati</div>
       </section>
     </div>
   </main>
