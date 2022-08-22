@@ -1,7 +1,7 @@
 <template>
   <div class="card-cover">
     <!-- Card Cover -->
-    <img class="cover" :src="`${imgUri}${item.poster_path}`" :alt="originalTitle" />
+    <img class="cover" :src="cover()" :alt="originalTitle" />
 
     <!-- Card Information -->
     <div class="card-info">
@@ -66,9 +66,16 @@ export default {
       return Math.ceil(vote / 2);
     },
   },
+  methods: {
+    cover() {
+      if (!this.item.poster_path) return this.imgPlaceholder;
+      return this.imgUri;
+    },
+  },
   data() {
     return {
-      imgUri: "https://image.tmdb.org/t/p/w342",
+      imgUri: "https://image.tmdb.org/t/p/w342" + this.item.poster_path,
+      imgPlaceholder: "https://online-serije.com/img/noimage.jpg",
     };
   },
 };
