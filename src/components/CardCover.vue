@@ -29,12 +29,12 @@
       <!-- Genre -->
       <div class="genre">
         <div>Genere:</div>
-        <span></span>
+        <span v-for="genre in genres" :key="genre.id">{{ genre.name }} </span>
       </div>
       <!-- Cast -->
       <div class="cast">
         <div>Cast:</div>
-        <span> </span>
+        <span v-for="credit in filteredCredits" :key="credit.id">{{ credit.original_name }} </span>
       </div>
       <!-- Overview -->
       <div class="overview"></div>
@@ -43,10 +43,13 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CardCover",
   props: {
     item: Object,
+    api: Object,
   },
   computed: {
     title() {
@@ -65,18 +68,42 @@ export default {
       if (vote < 1) vote = 1;
       return Math.ceil(vote / 2);
     },
+    filteredCredits() {
+      return this.credits.slice(0, 5);
+    },
   },
   methods: {
     cover() {
       if (!this.item.poster_path) return this.imgPlaceholder;
       return this.imgUri;
     },
+    fetchAdditionalData() {
+      let endpointType;
+      if (this.item.title) endpointType = "movie";
+      if (this.item.name) endpointType = "tv";
+
+      const endpoint = `/${endpointType}/` + this.item.id;
+
+      axios
+        .get(
+          `${this.api.baseUri}${endpoint}?api_key=b7dbfbbc8992a9c6e19724a411d702e7&language=it-IT&append_to_response=credits`
+        )
+        .then((res) => {
+          this.credits = res.data.credits.cast;
+          this.genres = res.data.genres;
+        });
+    },
   },
   data() {
     return {
       imgUri: "https://image.tmdb.org/t/p/w342" + this.item.poster_path,
       imgPlaceholder: "https://online-serije.com/img/noimage.jpg",
+      credits: [],
+      genres: [],
     };
+  },
+  created() {
+    this.fetchAdditionalData();
   },
 };
 </script>

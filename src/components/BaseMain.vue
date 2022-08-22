@@ -8,7 +8,7 @@
         <!-- Movie Card List -->
         <div v-if="movies.length" class="row">
           <div v-for="movie in movies" :key="movie.id" class="col-4 p-1">
-            <CardCover :item="movie" />
+            <CardCover :item="movie" :api="api" />
           </div>
         </div>
         <div v-else>Non sono stati trovati risultati</div>
@@ -20,7 +20,7 @@
         <!-- TV Series Card List -->
         <div v-if="series.length" class="row">
           <div v-for="serie in series" :key="serie.id" class="col-4 p-1">
-            <CardCover :item="serie" />
+            <CardCover :item="serie" :api="api" />
           </div>
         </div>
         <div v-else>Non sono stati trovati risultati</div>
@@ -36,6 +36,7 @@ export default {
   props: {
     movies: Array,
     series: Array,
+    api: Object,
   },
   components: { CardCover },
 };

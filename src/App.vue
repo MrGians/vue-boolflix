@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseHeader @search-query="startSearch" />
-    <BaseMain :movies="moviesList" :series="tvSeriesList" />
+    <BaseMain :movies="moviesList" :series="tvSeriesList" :api="api" />
   </div>
 </template>
 
@@ -35,28 +35,13 @@ export default {
         },
       };
 
-      this.fetchData("/search/movie", "moviesList", config, "movie");
+      this.fetchData("/search/movie", "moviesList", config);
 
-      this.fetchData("/search/tv", "tvSeriesList", config, "tv");
+      this.fetchData("/search/tv", "tvSeriesList", config);
     },
-    fetchData(endpoint, list, config, endpointType) {
+    fetchData(endpoint, list, config) {
       axios.get(`${this.api.baseUri}${endpoint}`, config).then((res) => {
         this[list] = res.data.results;
-
-        // get more data from another API request and put the result in the main list
-        this[list].forEach((item) => {
-          // Config API
-          const { api_key, language, credits } = this.api;
-          const endpoint = `/${endpointType}/${item.id}`;
-
-          axios
-            .get(`${this.api.baseUri}${endpoint}?api_key=${api_key}&${language}&${credits}`)
-            .then((res) => {
-              // Push in each main-list element the corresponding necessary data from API result element
-              item.credits = res.data.credits.cast;
-              item.genres = res.data.genres;
-            });
-        });
       });
     },
   },
